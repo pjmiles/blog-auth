@@ -1,0 +1,75 @@
+:root {
+    --primary: #e7dbdb;
+    --primary-alt: #b8b5c4;
+    --secondary: #555085;
+    --secondary-alt: #eee;
+    --dark: #1d1c1c;
+    --dark-alt: #999c99;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* forms styling */
+
+form {
+    border: 3px solid var(--dark-alt);
+    border-radius: 10px;
+    width: 100%;
+    max-width: 30rem;
+    margin: 10rem auto;
+    position: relative;
+    padding: 10px 10px;
+}
+
+
+input[type=text], input[type=password], input[type=email] {
+    width: 100%;
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 8px 0;
+    border: 1px solid var(--primary);
+    padding: 12px 15px;
+}
+
+.submit-btn-login {
+    background-color: var(--primary);
+    color: var(--dark);
+    padding: 10px 10px;
+    cursor: pointer;
+    margin: 8px 0;
+    border: none;
+    width: 100%;
+}
+
+.submit-btn-login:hover{
+    opacity: 0.8;
+}
+
+.login-inner-text {
+    font-size: 20px;
+    text-align: center;
+}
+
+/* for rgistration */
+.reg-btn {
+    background-color: var(--primary);
+    color: var(--dark);
+    padding: 10px 10px;
+    cursor: pointer;
+    margin: 8px 0;
+    border: none;
+    width: 100%;
+}
+
+.reg-btn:hover {
+    opacity: 0.8;
+}
+
+.register-inner-text {
+    font-size: 20px;
+    text-align: center;
+}
