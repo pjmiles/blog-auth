@@ -5,6 +5,9 @@
     --secondary-alt: #eee;
     --dark: #1d1c1c;
     --dark-alt: #999c99;
+    --red: red;
+    --blue:  #4169E1;
+    --blue-alt: #1C3A94;
 }
 
 *{
@@ -13,20 +16,64 @@
     box-sizing: border-box;
 }
 
-/* forms styling */
-
-form {
-    border: 3px solid var(--dark-alt);
-    border-radius: 10px;
+/* nav section */
+.nav-bar {
+    background-color: var(--secondary);
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
     width: 100%;
-    max-width: 30rem;
-    margin: 10rem auto;
-    position: relative;
-    padding: 10px 10px;
+}
+
+.nav-item {
+    color: var(--light);
+    font-size: 18px;
+}
+
+.nav-item a{
+    text-decoration: none;
+    color: var(--secondary-alt);
+    padding-left: 20px;
+}
+
+.nav-item a:hover {
+    color: #d71e5b;
+    transition: 0.3s;
+}
+
+.logo {
+    color: var(--secondary-alt);
+    font-size: 20px;
+    font-weight: 800;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 
-input[type=text], input[type=password], input[type=email] {
+/* forms styling */
+.register-section {
+    border: 3px solid var(--dark-alt);
+    background-color: var(--secondary);
+    border-radius: 10px;
+    width: 100%;
+    max-width: 30rem;
+    margin: 15px auto;
+    position: relative;
+    padding: 40px 40px;
+}
+
+.login-section {
+    border: 3px solid var(--dark-alt);
+    background-color: var(--secondary);
+    border-radius: 10px;
+    width: 100%;
+    max-width: 30rem;
+    margin: 7rem auto;
+    position: relative;
+    padding: 40px 40px;
+}
+
+input[type=text], input[type=password], input[type=email], input[type=username] {
     width: 100%;
     box-sizing: border-box;
     display: inline-block;
@@ -35,18 +82,21 @@ input[type=text], input[type=password], input[type=email] {
     padding: 12px 15px;
 }
 
-.submit-btn-login {
+button[type=submit] {
+    color: var(--red);
     background-color: var(--primary);
-    color: var(--dark);
+    color: var(--red);
     padding: 10px 10px;
     cursor: pointer;
-    margin: 8px 0;
+    margin: 10px 0;
     border: none;
     width: 100%;
+    font-weight: 600;
 }
 
 .submit-btn-login:hover{
     opacity: 0.8;
+    transition: 0.3s;
 }
 
 .login-inner-text {
@@ -54,22 +104,78 @@ input[type=text], input[type=password], input[type=email] {
     text-align: center;
 }
 
-/* for rgistration */
-.reg-btn {
-    background-color: var(--primary);
-    color: var(--dark);
-    padding: 10px 10px;
-    cursor: pointer;
-    margin: 8px 0;
-    border: none;
-    width: 100%;
+.login-message {
+    background-color: black;
 }
 
+/* for rgistration */
 .reg-btn:hover {
     opacity: 0.8;
+    transition: 0.3s;
 }
-
 .register-inner-text {
     font-size: 20px;
     text-align: center;
+}
+
+/* for Home  */
+.home-header {
+    text-align: center;
+    box-shadow: 1px 1.5px 9px 0.2px;
+    border-radius: 15px;
+    margin: 10rem 17px;
+    padding: 15px;
+}
+
+.home-header h2 {
+    color: var(--blue);
+    font-size: 2rem;
+}
+
+.home-header h1 {
+    color: var(--blue-alt);
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.home-header h1 span {
+    color: var(--primary-alt);
+}
+
+.home-header p {
+    font-weight: 500;
+    color: var(--dark-alt);
+}
+
+/* search bar */
+.search-bar-wrap > form {
+    background-color: var(--primary);
+    border: none;
+    width: fit-content;
+    margin: 2.5rem auto 4rem auto;
+    padding: 1rem;
+}
+
+.search-bar-wrap button {
+    padding: .1rem 1rem;
+    color: var(--blue-alt);
+}
+
+/* post container */
+
+.post-header-text {
+    text-align: center;
+    font-weight: 600;
+}
+
+.post-image-container {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    border: 2px solid rebeccapurple;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 15px;
+    overflow: hidden;
+    object-fit: cover;
 }

@@ -1,56 +1,59 @@
 import { useState, useEffect, useRef } from "react";
+import axiosInstance from "../api/axios";
+import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const Login = () => {
-  const errRef = useRef();
-
-  const [user, setUser ] = useState({username: "", password: ""});
-  const [errMsg, setErrMsg] = useState("");
+  const [user, setUser] = useState({ username: "", password: "" });
+  const [errLog, setErrLog] = useState("");
   const [success, setSuccess] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setUser("");
-    setSuccess(true);
+    try {
+      if (user.username === "" || user.password === "") {
+        setErrLog("Please provide your login details");
+        setSuccess(false);
+      } else if (
+        user.username === user.password ||
+        user.password === "undefined"
+      ) {
+        setErrLog("Please provide valid username or password");
+        setSuccess(false);
+      } else {
+        axiosInstance.post("login", user);
+        setSuccess(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const getUserDetails = (event) => {
-    setUser((current) => ({...current, [event.target.name]: event.target.value,}))
-
-    // to validate user
-    // if(setUser === user.username) {
-    //   errMsg('')
-    // }
+  const getUserDetails = async (e) => {
+    setUser((current) => ({
+      ...current,
+      [e.target.name]: e.target.value,
+    }));
   };
- 
-
-  // to empty out error message when the state of the user or password changes
-  useEffect(() => {
-    setErrMsg("");
-  });
 
   return (
     <>
+      <Navbar />
       {success ? (
-        <section>
+        <section className="login-message">
           <h1>You are logged in!</h1>
           <br />
           <p>
-            <a href="#">Go to Home</a>
+            <Link to="/">Go to Home</Link>
           </p>
         </section>
       ) : (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="login-section">
           <div className="login-container">
-            <p
-              ref={errRef}
-              className={errMsg ? "errmsg" : "offscreen"}
-              aria-live="assertive"
-            >
-              {errMsg}
-            </p>
             <div className="login-header-text">
               <h3 className="login-inner-text">Login Here</h3>
             </div>
+            <div>{errLog}</div>
 
             <label htmlFor="username">Username</label>
             <input
@@ -62,7 +65,6 @@ const Login = () => {
               autoComplete="off"
               onChange={getUserDetails}
               value={user.username}
-              required
             ></input>
 
             <label htmlFor="password">Password</label>
@@ -74,15 +76,17 @@ const Login = () => {
               name="password"
               onChange={getUserDetails}
               value={user.password}
-              required
             ></input>
 
             <button type="submit" className="submit-btn-login">
               Login
             </button>
+            <div className="no-account-login">
+              No account? <Link to="/register/">Register</Link>
+            </div>
           </div>
         </form>
-       )} 
+      )}
     </>
   );
 };
