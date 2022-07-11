@@ -2,6 +2,7 @@ import { useState } from "react";
 import axiosInstance from "../api/axios";
 import img1 from "../images/img1.jpg";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const Post = () => {
   const [blog, setBlog] = useState({ title: "", content: "", author: "" });
@@ -15,7 +16,7 @@ const Post = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const result = await axiosInstance.post({setBlog});
+        const result = axiosInstance.post({setBlog});
       if (result?.status === 200) {
         return true;
       }
@@ -25,10 +26,12 @@ const Post = () => {
   };
 
   return (
+    <>
+    <Navbar />
     <form className="post-conatiner" onSubmit={handleSubmit}>
       <div className="post-image-container">
         <h3 className="post-header-text">Blog Here...</h3>
-        <img className="post-image" src={img1} />
+        <img alt="" className="post-image" src={img1} />
 
         <div className="form-control">
           <label htmlFor="title">Title:</label>
@@ -48,7 +51,7 @@ const Post = () => {
           <textarea
             className="post-image-description"
             cols="30"
-            row="3"
+            row="4"
             id="content"
             name="content"
             value={setBlog.content}
@@ -76,6 +79,7 @@ const Post = () => {
         <input type="submit" className="post-btn"></input>
       </div>
     </form>
+    </>
   );
 };
 

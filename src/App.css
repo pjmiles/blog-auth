@@ -49,7 +49,6 @@
     text-decoration: none;
 }
 
-
 /* forms styling */
 .register-section {
     border: 3px solid var(--dark-alt);
@@ -162,20 +161,98 @@ button[type=submit] {
 }
 
 /* post container */
-
 .post-header-text {
     text-align: center;
     font-weight: 600;
 }
 
 .post-image-container {
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-    border: 2px solid rebeccapurple;
+    margin: 20px auto;
+    max-width: 550px;
     align-items: center;
-    justify-content: center;
     padding: 15px 15px;
-    overflow: hidden;
-    object-fit: cover;
+    box-shadow: 1px 0px 8px;
+
+}
+
+.post-image{
+    width: 200px;
+}
+
+.post-image-description {
+    width: 100%;
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 8px 0;
+    border: 1px solid var(--primary);
+    padding: 12px 15px;
+}
+.post-btn {
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+    background-color: #b8b5c4;
+    margin-top: 20px;
+    width: 20%;
+}
+
+.post-btn:hover{
+    transition: 0.3ms;
+    background-color: #d71e5b;
+}
+
+/* profile section */
+.profile{
+    max-width: 550px;
+    margin: 0 auto;
+}
+.profile-image-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 30px;
+    margin: 18px 0px;
+    border-bottom: 1px solid rgb(195, 195, 204);
+    border-radius: 5px;
+}
+
+.profile-inner-image {
+    width: 160px;
+    height: 160px;
+    border-radius: 80px;
+}
+
+.profile-right-text {
+    display: flex;
+    justify-content: space-between;
+    width: 108%;
+    margin-top: 10px;
+}
+
+.profile-right > h2 {
+    margin-top: 10px;
+}
+
+.profile-gallery{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.profile-item {
+    width: 30%;
+    margin-bottom: 5px;
+}
+
+.profile-right-btn {
+    margin-top: 15px;
+    font-size: 17px;
+    padding: 8px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.profile-right-btn:hover {
+    color: #d71e5b;
 }

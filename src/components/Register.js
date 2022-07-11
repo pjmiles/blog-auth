@@ -53,6 +53,7 @@ const Register = () => {
 
   const postRequest = async () => {
     try {
+
      const data = await axiosInstance.post("register", {
         first_name: user.first_name,
         last_name: user.last_name,
@@ -61,6 +62,11 @@ const Register = () => {
         password: user.password,
         password2: user.password2,
       })
+      if(data.status === 200){
+        return true
+      } else {
+        setErrMsg("user already exist")
+      }
       
     } catch (error) {
       console.log(error);
@@ -70,7 +76,6 @@ const Register = () => {
   return (
     <>
       <Navbar />
-      
       {registered ? (
         <section>
           <h1>Your Registration was successful</h1>
@@ -80,7 +85,7 @@ const Register = () => {
           </p>
         </section>
       ) : (
-        <div>{errMsg}
+        
         <form onSubmit={handleSubmit} className="register-section">
           <div className="register-container">
             <div className="register-header-text">
@@ -161,15 +166,14 @@ const Register = () => {
                 placeholder="Confirm Password"
                 value={user.password2}
                 onChange={getUserDetails}
-              ></input>
-              
+              ></input> 
             </div>
           </div>
           <button type="submit" className="reg-btn">
             Register
           </button>
+          <div>{errMsg}</div>
         </form>
-        </div>
       )}
     </>
   );
