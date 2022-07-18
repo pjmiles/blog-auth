@@ -2,7 +2,7 @@ import { useState } from "react";
 import axiosInstance from "../api/axios";
 import img1 from "../images/img1.jpg";
 import { useNavigate } from "react-router-dom";
-import Navbar from "./Navbar";
+
 
 const Post = () => {
   const [blog, setBlog] = useState({ title: "", content: "", author: "" });
@@ -18,7 +18,7 @@ const Post = () => {
     try {
         const result = axiosInstance.post({setBlog});
       if (result?.status === 200) {
-        return true;
+        return navigate("/", {replace: true});
       }
     } catch (err) {
       console.log(err);
@@ -27,7 +27,6 @@ const Post = () => {
 
   return (
     <>
-    <Navbar />
     <form className="post-conatiner" onSubmit={handleSubmit}>
       <div className="post-image-container">
         <h3 className="post-header-text">Blog Here...</h3>

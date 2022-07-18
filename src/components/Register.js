@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axiosInstance from "../api/axios";
 import { Link } from "react-router-dom";
-import Navbar from "./Navbar";
 
 const Register = () => {
   const [user, setUser] = useState({
@@ -42,7 +41,7 @@ const Register = () => {
     }
   };
 
-  // 
+ 
 
   const getUserDetails = (e) => {
     setUser((current) => ({
@@ -53,7 +52,6 @@ const Register = () => {
 
   const postRequest = async () => {
     try {
-
      const data = await axiosInstance.post("register", {
         first_name: user.first_name,
         last_name: user.last_name,
@@ -75,7 +73,6 @@ const Register = () => {
 
   return (
     <>
-      <Navbar />
       {registered ? (
         <section>
           <h1>Your Registration was successful</h1>
@@ -132,7 +129,7 @@ const Register = () => {
               
             </div>
             <div className="reg-email">
-              <label htmlFor="email">Email </label>
+              <label htmlFor="email">Email</label>
               <input
                 type="email"
                 id="email"
@@ -144,7 +141,7 @@ const Register = () => {
               ></input>
             </div>
             <div className="reg-password">
-              <label htmlFor="password">Password </label>
+              <label htmlFor="password">Password</label>
               <input
                 className="register-input"
                 type="password"

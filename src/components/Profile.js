@@ -1,9 +1,8 @@
 import pic from "../images/img1.jpg";
-import Navbar from "./Navbar";
+
 const Profile = () => {
   return (
     <>
-    <Navbar />
     <div className="profile">
       <div className="profile-image-container">
         <div className="profile-image">

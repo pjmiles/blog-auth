@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import axiosInstance from "../api/axios";
 import { Link } from "react-router-dom";
-import Navbar from "./Navbar";
+// import Navbar from "./Navbar";
 
 const Login = () => {
   const [user, setUser] = useState({ username: "", password: "" });
@@ -38,7 +38,7 @@ const Login = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       {success ? (
         <section className="login-message">
           <h1>You are logged in!</h1>
