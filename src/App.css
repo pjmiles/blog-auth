@@ -172,7 +172,6 @@ button[type=submit] {
     align-items: center;
     padding: 15px 15px;
     box-shadow: 1px 0px 8px;
-
 }
 
 .post-image{
@@ -255,4 +254,34 @@ button[type=submit] {
 
 .profile-right-btn:hover {
     color: #d71e5b;
+}
+
+/* Blog page */
+.blogs h3 {
+    text-align: center;
+    font-size: 30px;
+    background: var(--blue-alt);
+}
+
+.blog-container {
+    background-color: var(--secondary-alt);
+    padding: 10px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.blog-title{
+    font-size: 20px;
+    font-weight: 550;
+}
+
+.blog-content-conatiner {
+    border: 2px solid #555085;
+    border-radius: 5px;
+    padding: 10px 15px;
+    height: 200px;
+    width: 300px;
 }

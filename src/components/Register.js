@@ -18,12 +18,12 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (
-      user.first_name === "" ||
-      user.last_name === "" ||
-      user.username === "" ||
-      user.email === "" ||
-      user.password === "" ||
-      user.password2 === ""
+      !user.first_name ||
+      !user.last_name ||
+      !user.username ||
+      !user.email ||
+      !user.password ||
+      !user.password2
     ) {
       setErrMsg("please provide all required details");
       setRegistered(false)
@@ -41,25 +41,16 @@ const Register = () => {
     }
   };
 
- 
-
-  const getUserDetails = (e) => {
-    setUser((current) => ({
-      ...current,
+  const handleChange = (e) => {
+    setUser((prev) => ({
+      ...prev,
       [e.target.name]: e.target.value.trim(),
     }));
   };
 
   const postRequest = async () => {
     try {
-     const data = await axiosInstance.post("register", {
-        first_name: user.first_name,
-        last_name: user.last_name,
-        username: user.username,
-        email: user.email,
-        password: user.password,
-        password2: user.password2,
-      })
+     const data = await axiosInstance.post("register", user)
       if(data.status === 200){
         return true
       } else {
@@ -98,7 +89,7 @@ const Register = () => {
                 name="first_name"
                 placeholder="Firstname"
                 value={user.first_name}
-                onChange={getUserDetails}
+                onChange={handleChange}
               ></input>
            
             </div>
@@ -111,7 +102,7 @@ const Register = () => {
                 className="register-input"
                 placeholder="lastname"
                 value={user.last_name}
-                onChange={getUserDetails}
+                onChange={handleChange}
               ></input>
              
             </div>
@@ -124,7 +115,7 @@ const Register = () => {
                 className="register-input"
                 placeholder="username"
                 value={user.username}
-                onChange={getUserDetails}
+                onChange={handleChange}
               ></input>
               
             </div>
@@ -137,7 +128,7 @@ const Register = () => {
                 className="register-input"
                 placeholder="Email"
                 value={user.email}
-                onChange={getUserDetails}
+                onChange={handleChange}
               ></input>
             </div>
             <div className="reg-password">
@@ -149,7 +140,7 @@ const Register = () => {
                 name="password"
                 placeholder="Password"
                 value={user.password}
-                onChange={getUserDetails}
+                onChange={handleChange}
               ></input>
               
             </div>
@@ -162,7 +153,7 @@ const Register = () => {
                 name="password2"
                 placeholder="Confirm Password"
                 value={user.password2}
-                onChange={getUserDetails}
+                onChange={handleChange}
               ></input> 
             </div>
           </div>

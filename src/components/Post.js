@@ -8,7 +8,7 @@ const Post = () => {
   const [blog, setBlog] = useState({ title: "", content: "", author: "" });
   let navigate = useNavigate();
 
-  const getBlogDetails = (e) => {
+  const handleBlogDetails = (e) => {
     e.preventDefault();
     setBlog((current) => ({ ...current, [e.target.name]: e.target.value }));
   };
@@ -40,7 +40,7 @@ const Post = () => {
             name="title"
             className="post-title"
             value={setBlog.title}
-            onChange={getBlogDetails}
+            onChange={handleBlogDetails}
             placeholder="title"
             required
           ></input>
@@ -54,7 +54,7 @@ const Post = () => {
             id="content"
             name="content"
             value={setBlog.content}
-            onChange={getBlogDetails}
+            onChange={handleBlogDetails}
             placeholder="content"
           ></textarea>
         </div>
@@ -67,7 +67,7 @@ const Post = () => {
             name="name"
             value={setBlog.author}
             placeholder="name"
-            onChange={getBlogDetails}
+            onChange={handleBlogDetails}
             required
           ></input>
         </div>

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import axiosInstance from "../api/axios";
 import { Link } from "react-router-dom";
 // import Navbar from "./Navbar";
@@ -11,18 +11,24 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (user.username === "" || user.password === "") {
+      if (!user.username || !user.password) {
         setErrLog("Please provide your login details");
-        setSuccess(false);
       } else if (
         user.username === user.password ||
         user.password === "undefined"
       ) {
         setErrLog("Please provide valid username or password");
-        setSuccess(false);
       } else {
-        axiosInstance.post("login", user);
-        setSuccess(true);
+        const res = await axiosInstance.post("login", user);
+        if (res.status === 200) {
+          setSuccess(true);
+        }
+
+        // if (res.status == 404) {
+        //   console.log("ggggs");
+        //   setSuccess(false);
+        //   setErrLog("Invalid user");
+        // }
       }
     } catch (error) {
       console.log(error);
@@ -38,13 +44,12 @@ const Login = () => {
 
   return (
     <>
-      {/* <Navbar /> */}
       {success ? (
         <section className="login-message">
           <h1>You are logged in!</h1>
           <br />
           <p>
-            <Link to="/">Go to Home</Link>
+            <Link to="/blogs">Go to Home</Link>
           </p>
         </section>
       ) : (
