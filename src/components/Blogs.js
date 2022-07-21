@@ -7,8 +7,9 @@ const Blogs = () => {
   const getBlog = async () => {
     try {
       const results = await axiosInstance.get();
+      setPosts(results.data.results);
       // console.log(results.data.getPosts)
-      setPosts(results.data.getPosts);
+      // console.log(results.data.results)
     } catch {
       console.log("Error getting blogs");
     }

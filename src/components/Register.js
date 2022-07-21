@@ -36,7 +36,6 @@ const Register = () => {
       setErrMsg("Password must be more than 7 characters")
       setRegistered(false);
     } else {
-      setRegistered(true);
       postRequest()
     }
   };
@@ -50,14 +49,11 @@ const Register = () => {
 
   const postRequest = async () => {
     try {
-     const data = await axiosInstance.post("register", user)
-      if(data.status === 200){
-        return true
-      } else {
-        setErrMsg("user already exist")
-      }
-      
+     await axiosInstance.post("register", user)
+     setRegistered(true)
     } catch (error) {
+        setRegistered(false)
+        setErrMsg("This User already exist")
       console.log(error);
     }
   };

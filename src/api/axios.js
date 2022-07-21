@@ -7,7 +7,7 @@ import axios from "axios";
 // b 'https://blog-perm.herokuapp.com/api/'
 // })
 
- const baseURL = "https://permission-api675.herokuapp.com";
+ const baseURL = "https://blog-perm.herokuapp.com/api/";
 
 const axiosInstance = axios.create({
     baseURL: baseURL
