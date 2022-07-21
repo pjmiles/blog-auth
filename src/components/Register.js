@@ -2,7 +2,9 @@ import { useState } from "react";
 import axiosInstance from "../api/axios";
 import { Link } from "react-router-dom";
 
+
 const Register = () => {
+ 
   const [user, setUser] = useState({
     first_name: "",
     last_name: "",
@@ -51,6 +53,7 @@ const Register = () => {
     try {
      await axiosInstance.post("register", user)
      setRegistered(true)
+     
     } catch (error) {
         setRegistered(false)
         setErrMsg("This User already exist")
@@ -75,7 +78,7 @@ const Register = () => {
             <div className="register-header-text">
               <h3 className="register-inner-text">Register Here</h3>
             </div>
-
+            <div className="reg-error">{errMsg}</div>
             <div className="reg-username">
               <label htmlFor="first_name">First Name </label>
               <input
@@ -86,6 +89,7 @@ const Register = () => {
                 placeholder="Firstname"
                 value={user.first_name}
                 onChange={handleChange}
+                required
               ></input>
            
             </div>
@@ -99,6 +103,7 @@ const Register = () => {
                 placeholder="lastname"
                 value={user.last_name}
                 onChange={handleChange}
+                required
               ></input>
              
             </div>
@@ -112,6 +117,7 @@ const Register = () => {
                 placeholder="username"
                 value={user.username}
                 onChange={handleChange}
+                required
               ></input>
               
             </div>
@@ -125,6 +131,7 @@ const Register = () => {
                 placeholder="Email"
                 value={user.email}
                 onChange={handleChange}
+                required
               ></input>
             </div>
             <div className="reg-password">
@@ -137,6 +144,7 @@ const Register = () => {
                 placeholder="Password"
                 value={user.password}
                 onChange={handleChange}
+                required
               ></input>
               
             </div>
@@ -150,13 +158,13 @@ const Register = () => {
                 placeholder="Confirm Password"
                 value={user.password2}
                 onChange={handleChange}
+                required
               ></input> 
             </div>
           </div>
           <button type="submit" className="reg-btn">
             Register
           </button>
-          <div>{errMsg}</div>
         </form>
       )}
     </>

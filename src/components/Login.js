@@ -1,20 +1,20 @@
 import { useState } from "react";
 import axiosInstance from "../api/axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [user, setUser] = useState({ username: "", password: "" });
   const [errLog, setErrLog] = useState(null);
   const [success, setSuccess] = useState(false);
 
+  let navigate = useNavigate()
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!user.username || !user.password){
-        setErrLog("Please provide your login details");
-      }
     try {
       await axiosInstance.post("login", user);
       setSuccess(true)
+      navigate("/blogs")
     } catch (error) {
       setErrLog("Invalid user details")
       console.log(error)
@@ -44,7 +44,7 @@ const Login = () => {
             <div className="login-header-text">
               <h3 className="login-inner-text">Login Here</h3>
             </div>
-            <div>{errLog}</div>
+            <div className="login-error">{errLog}</div>
 
             <label htmlFor="username">Username</label>
             <input
@@ -56,6 +56,7 @@ const Login = () => {
               autoComplete="off"
               onChange={getUserDetails}
               value={user.username}
+              required
             ></input>
 
             <label htmlFor="password">Password</label>
@@ -67,6 +68,7 @@ const Login = () => {
               name="password"
               onChange={getUserDetails}
               value={user.password}
+              required
             ></input>
 
             <button type="submit" className="submit-btn-login">

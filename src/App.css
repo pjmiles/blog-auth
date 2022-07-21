@@ -107,6 +107,11 @@ button[type=submit] {
     background-color: plum;
 }
 
+.login-error {
+    background-color: rgb(189, 51, 51);
+    text-align: center;
+}
+
 /* for rgistration */
 .reg-btn:hover {
     opacity: 0.8;
@@ -114,6 +119,10 @@ button[type=submit] {
 }
 .register-inner-text {
     font-size: 20px;
+    text-align: center;
+}
+.reg-error {
+    background-color: rgb(189, 51, 51);
     text-align: center;
 }
 
@@ -257,14 +266,13 @@ button[type=submit] {
 }
 
 /* Blog page */
-.blogs h3 {
+.blogs h1 {
     text-align: center;
-    font-size: 30px;
-    background: var(--blue-alt);
+    font-size: 25px;
 }
 
 .blog-container {
-    background-color: var(--secondary-alt);
+    /* background-color: var(--secondary-alt); */
     padding: 10px 16px;
     display: flex;
     flex-direction: column;

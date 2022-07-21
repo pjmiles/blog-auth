@@ -22,7 +22,7 @@ const Blogs = () => {
   console.log(posts);
   return (
     <div className="blogs">
-        <h3>Blogs...</h3>
+        <h1>Blogs...</h1>
       {posts.map((post) => {
         return (
           <div className="blog-container" key={post._id}>
