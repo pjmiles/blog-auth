@@ -293,3 +293,12 @@ button[type=submit] {
     height: 200px;
     width: 300px;
 }
+
+.blog-loadmore {
+    text-align: center;
+}
+
+.loadmore {
+    font-size: 18px;
+    color: var(--secondary);
+}

@@ -15,8 +15,8 @@ const Post = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        await axiosInstance.post({ setBlog });
-
+      await axiosInstance.post(blog);
+      setBlog();
     } catch (err) {
       console.log(err);
     }

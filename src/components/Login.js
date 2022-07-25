@@ -7,17 +7,20 @@ const Login = () => {
   const [errLog, setErrLog] = useState(null);
   const [success, setSuccess] = useState(false);
 
-  let navigate = useNavigate()
+  let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axiosInstance.post("login", user);
-      setSuccess(true)
-      navigate("/blogs")
+      const result = await axiosInstance.post("login", user);
+      console.log(result.data.data);
+      localStorage.setItem("user-data", JSON.stringify(result.data.data));
+  
+      setSuccess(true);
+      navigate("/blogs");
     } catch (error) {
-      setErrLog("Invalid user details")
-      console.log(error)
+      setErrLog("Invalid user details");
+      console.log(error);
     }
   };
 
