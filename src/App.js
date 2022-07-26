@@ -7,9 +7,16 @@ import Post from "./components/Post";
 import Navbar from "./components/Navbar";
 import Profile from "./components/Profile";
 import Blogs from "./components/Blogs";
+// import { useState } from "react";
 
 
 function App() {
+  // const [token, setToken] = useState()
+  // if(!token) {
+  //   return (
+  //     <Login setToken={setToken} />
+  //   )
+  // }
   return (
     <div className="App">
       <Navbar />

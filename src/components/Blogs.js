@@ -5,20 +5,19 @@ const Blogs = () => {
   const [posts, setPosts] = useState([]);
   const [visible, setVisible] = useState(3);
 
-  const getBlog = async () => {
-    try {
-      const results = await axiosInstance.get();
-      setPosts(results.data.results);
-    } catch {
-      console.log("Error getting blogs");
-    }
-  };
-
   const loadMore = () => {
     setVisible((moreItem) => moreItem + 3);
   };
 
   useEffect(() => {
+    const getBlog = async () => {
+      try {
+        const results = await axiosInstance.get();
+        setPosts(results.data.results);
+      } catch {
+        console.log("Error getting blogs");
+      }
+    };
     getBlog();
   }, []);
 

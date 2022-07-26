@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 const Post = () => {
   const [blog, setBlog] = useState({ title: "", content: "", author: "" });
+  const [postErr, setPostErr] = useState("")
+
 
   const handleBlogDetails = (e) => {
     e.preventDefault();
@@ -15,12 +17,13 @@ const Post = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axiosInstance.post(blog);
-      setBlog();
-    } catch (err) {
-      console.log(err);
+      const result = await axiosInstance.get(blog);
+      setBlog(result);
+      navigate("/blogs");
+    } catch (e) {
+      console.log(e);
+      setPostErr("There was a problem sending post")
     }
-    navigate("/blogs");
   };
 
   return (
@@ -28,8 +31,8 @@ const Post = () => {
       <form className="post-conatiner" onSubmit={handleSubmit}>
         <div className="post-image-container">
           <h3 className="post-header-text">Blog Here...</h3>
+          <div>{postErr}</div>
           <img alt="" className="post-image" src={img1} />
-
           <div className="form-control">
             <label htmlFor="title">Title:</label>
             <input
@@ -37,7 +40,7 @@ const Post = () => {
               id="title"
               name="title"
               className="post-title"
-              value={setBlog.title}
+              value={blog.title}
               onChange={handleBlogDetails}
               placeholder="title"
               required
@@ -51,7 +54,7 @@ const Post = () => {
               row="4"
               id="content"
               name="content"
-              value={setBlog.content}
+              value={blog.content}
               onChange={handleBlogDetails}
               placeholder="content"
             ></textarea>
@@ -62,8 +65,8 @@ const Post = () => {
               className="post-author"
               type="text"
               id="author"
-              name="name"
-              value={setBlog.author}
+              name="author"
+              value={blog.author}
               placeholder="name"
               onChange={handleBlogDetails}
               required

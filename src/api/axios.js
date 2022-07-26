@@ -20,3 +20,13 @@ export default axiosInstance
 // export const login_url = baseURL + "login";
 // export const search_url = baseURL + "search/";
 // export const deleted_url = baseURL + "postblogs/";
+
+// M api
+// https://permission-376.herokuapp.com/
+// for post 
+// https://permission-376.herokuapp.com/register
+// for login
+//   /login  
+// postblogs
+//  /postblogs,  del & patch   /postblogs/:id 
+ 
