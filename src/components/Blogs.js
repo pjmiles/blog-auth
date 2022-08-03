@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../api/axios";
 
 const Blogs = () => {
+  
   const [posts, setPosts] = useState([]);
   const [visible, setVisible] = useState(3);
 

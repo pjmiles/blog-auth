@@ -10,10 +10,17 @@ import axios from "axios";
  const baseURL = "https://blog-perm.herokuapp.com/api/";
 
 const axiosInstance = axios.create({
-    baseURL: baseURL
+    baseURL: baseURL,
+    headers: {
+        Authorization: localStorage.getItem('access')
+        // ? 'Bearer ' + localStorage.getItem('access_token')
+        // : null,
+    }
 })
 
 export default axiosInstance
+
+// curl --location --request POST 'https://blog-perm.herokuapp.com/api/token/'
 
 // export const baseURL = "https://blog-perm.herokuapp.com/api/";
 // export const reg_url = baseURL + "register";

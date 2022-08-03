@@ -17,8 +17,11 @@ const Post = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const result = await axiosInstance.get(blog);
-      setBlog(result);
+      const result = await axiosInstance.get("/", blog, {
+
+      });
+      console.log(result)
+      setBlog();
       navigate("/blogs");
     } catch (e) {
       console.log(e);

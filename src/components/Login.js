@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from 'axios'
 import axiosInstance from "../api/axios";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -12,10 +13,12 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const result = await axiosInstance.post("login", user);
-      console.log(result.data.data);
-      localStorage.setItem("user-data", JSON.stringify(result.data.data));
-  
+      const result = await axiosInstance.post("token/", user)
+      console.log(result.data);
+      localStorage.setItem("user-data", JSON.stringify(result.data));
+
+      axios.defaults.headers.common['Authorization'] = `Bearer ${result.data['token']}`
+
       setSuccess(true);
       navigate("/blogs");
     } catch (error) {
