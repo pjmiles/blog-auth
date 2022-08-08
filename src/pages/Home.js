@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Login from "../components/Login";
+import Blogs from "../components/Blogs";
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
         <Link to="/login" element={<Login />}>Login</Link>
       </div>
       </header>
+      <Blogs />
     </div>
   );
 };

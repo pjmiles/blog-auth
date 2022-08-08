@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from 'axios'
+// import axios from 'axios'
 import axiosInstance from "../api/axios";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -17,8 +17,6 @@ const Login = () => {
       console.log(result.data);
       localStorage.setItem("user-data", JSON.stringify(result.data));
 
-      axios.defaults.headers.common['Authorization'] = `Bearer ${result.data['token']}`
-
       setSuccess(true);
       navigate("/blogs");
     } catch (error) {
@@ -28,8 +26,8 @@ const Login = () => {
   };
 
   const getUserDetails = async (e) => {
-    setUser((current) => ({
-      ...current,
+    setUser((prev) => ({
+      ...prev,
       [e.target.name]: e.target.value,
     }));
   };

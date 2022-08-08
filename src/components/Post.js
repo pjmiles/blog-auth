@@ -2,24 +2,33 @@ import { useState } from "react";
 import axiosInstance from "../api/axios";
 import img1 from "../images/img1.jpg";
 import { useNavigate } from "react-router-dom";
+// import axios from "axios";
 
 const Post = () => {
   const [blog, setBlog] = useState({ title: "", content: "", author: "" });
   const [postErr, setPostErr] = useState("")
+  // const [isAuth, setIsAuth] = useState("") //state to check if user have access to post
 
 
+  
   const handleBlogDetails = (e) => {
     e.preventDefault();
-    setBlog((current) => ({ ...current, [e.target.name]: e.target.value }));
+    setBlog((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    // setIsAuth("You are not allowed to post until you are logged in")
   };
 
   let navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const result = await axiosInstance.get("/", blog, {
-
-      });
+      const result = await axiosInstance.get(blog, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer  `
+      }
+    });
+      localStorage.getItem("user-data") // to get the token saved in the local storage
       console.log(result)
       setBlog();
       navigate("/blogs");
