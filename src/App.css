@@ -8,6 +8,7 @@
     --red: red;
     --blue:  #4169E1;
     --blue-alt: #1C3A94;
+    --shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 *{
@@ -287,11 +288,12 @@ button[type=submit] {
 }
 
 .blog-content-conatiner {
-    border: 2px solid #555085;
+    /* border: 2px solid #555085; */
     border-radius: 5px;
     padding: 10px 15px;
     height: 200px;
     width: 300px;
+    box-shadow: var(--shadow);
 }
 
 .blog-loadmore {
@@ -301,4 +303,9 @@ button[type=submit] {
 .loadmore {
     font-size: 18px;
     color: var(--secondary);
+}
+
+.author-container {
+    text-align: right;
+    
 }

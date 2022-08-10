@@ -5,36 +5,35 @@ import { useNavigate } from "react-router-dom";
 // import axios from "axios";
 
 const Post = () => {
-  const [blog, setBlog] = useState({ title: "", content: "", author: "" });
-  const [postErr, setPostErr] = useState("")
+  const [blog, setBlog] = useState({ title: "", content: "" });
+  const [postErr, setPostErr] = useState("");
   // const [isAuth, setIsAuth] = useState("") //state to check if user have access to post
 
-
-  
   const handleBlogDetails = (e) => {
     e.preventDefault();
     setBlog((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     // setIsAuth("You are not allowed to post until you are logged in")
   };
 
+  
+
   let navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = JSON.parse(localStorage.getItem("user-data")); // to get the token saved in the local storage
     try {
-      const result = await axiosInstance.get(blog, {
-        method: "GET",
+      const result = await axiosInstance.post("/", blog, {
         headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer  `
-      }
-    });
-      localStorage.getItem("user-data") // to get the token saved in the local storage
-      console.log(result)
+          Authorization : `Bearer ${token.access}`,
+        },
+      });
+      console.log(result);
       setBlog();
       navigate("/blogs");
-    } catch (e) {
-      console.log(e);
-      setPostErr("There was a problem sending post")
+    } catch (err) {
+      console.log(err);
+      setPostErr(err.message);
     }
   };
 
@@ -70,19 +69,6 @@ const Post = () => {
               onChange={handleBlogDetails}
               placeholder="content"
             ></textarea>
-          </div>
-          <div className="form-control">
-            <label htmlFor="author">Author</label>
-            <input
-              className="post-author"
-              type="text"
-              id="author"
-              name="author"
-              value={blog.author}
-              placeholder="name"
-              onChange={handleBlogDetails}
-              required
-            ></input>
           </div>
           <div className="form-control">
             <label htmlFor="image"> Select image:</label>

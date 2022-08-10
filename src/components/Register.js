@@ -17,6 +17,26 @@ const Register = () => {
   const [errMsg, setErrMsg] = useState("");
   const [registered, setRegistered] = useState(false);
 
+ 
+  const handleChange = (e) => {
+    setUser((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value.trim(),
+    }));
+  };
+
+  const postRequest = async () => {
+    try {
+     await axiosInstance.post("register", user)
+     setRegistered(true)
+     
+    } catch (error) {
+        setRegistered(false)
+        setErrMsg("This User already exist")
+      console.log(error);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (
@@ -39,25 +59,6 @@ const Register = () => {
       setRegistered(false);
     } else {
       postRequest()
-    }
-  };
-
-  const handleChange = (e) => {
-    setUser((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value.trim(),
-    }));
-  };
-
-  const postRequest = async () => {
-    try {
-     await axiosInstance.post("register", user)
-     setRegistered(true)
-     
-    } catch (error) {
-        setRegistered(false)
-        setErrMsg("This User already exist")
-      console.log(error);
     }
   };
 

@@ -13,8 +13,7 @@ const axiosInstance = axios.create({
     baseURL: baseURL,
     headers: {
         Authorization: localStorage.getItem('access')
-        // ? 'Bearer ' + localStorage.getItem('access_token')
-        // : null,
+        
     }
 })
 
