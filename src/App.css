@@ -3,6 +3,7 @@
     --primary-alt: #b8b5c4;
     --secondary: #555085;
     --secondary-alt: #eee;
+    --alt-color: #d71e5b;
     --dark: #1d1c1c;
     --dark-alt: #999c99;
     --red: red;
@@ -38,7 +39,7 @@
 }
 
 .nav-item a:hover {
-    color: #d71e5b;
+    color: var(--alt-color);
     transition: 0.3s;
 }
 
@@ -174,6 +175,7 @@ button[type=submit] {
 .post-header-text {
     text-align: center;
     font-weight: 600;
+    color: var(--secondary);
 }
 
 .post-image-container {
@@ -186,6 +188,10 @@ button[type=submit] {
 
 .post-image{
     width: 200px;
+}
+
+.post-image-contain {
+    text-align: center;
 }
 
 .post-image-description {
@@ -300,6 +306,10 @@ button[type=submit] {
     text-align: center;
 }
 
+.blog-author {
+    color: var(--alt-color);
+}
+
 .loadmore {
     font-size: 18px;
     color: var(--secondary);
@@ -308,4 +318,12 @@ button[type=submit] {
 .author-container {
     text-align: right;
     
+}
+
+.post-error-container {
+    text-align: center;
+}
+
+.post-error {
+    color: red;
 }

@@ -6,7 +6,7 @@ const Blogs = () => {
   const [visible, setVisible] = useState(3);
 
   const loadMore = () => {
-    setVisible((moreItem) => moreItem + 3);
+    setVisible((item) => item + 3);
   };
 
   useEffect(() => {

@@ -2,38 +2,36 @@ import { useState } from "react";
 import axiosInstance from "../api/axios";
 import img1 from "../images/img1.jpg";
 import { useNavigate } from "react-router-dom";
-// import axios from "axios";
 
 const Post = () => {
   const [blog, setBlog] = useState({ title: "", content: "" });
   const [postErr, setPostErr] = useState("");
-  // const [isAuth, setIsAuth] = useState("") //state to check if user have access to post
 
   const handleBlogDetails = (e) => {
     e.preventDefault();
     setBlog((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    // setIsAuth("You are not allowed to post until you are logged in")
   };
-
-  
 
   let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = JSON.parse(localStorage.getItem("user-data")); // to get the token saved in the local storage
-    try {
-      const result = await axiosInstance.post("/", blog, {
-        headers: {
-          Authorization : `Bearer ${token.access}`,
-        },
-      });
-      console.log(result);
-      setBlog();
-      navigate("/blogs");
-    } catch (err) {
-      console.log(err);
-      setPostErr(err.message);
+    const userData = JSON.parse(localStorage.getItem("user-data")); // to get the token saved in the local storage
+    if (userData) {
+      try {
+        const result = await axiosInstance.post("/", blog, {
+          headers: {
+            Authorization: `Bearer ${userData.access}`,
+          },
+        });
+        console.log(result);
+        setBlog();
+        navigate("/blogs");
+      } catch (e) {
+        setPostErr("Error with posting");
+      }
+    } else {
+      setPostErr("Please login to post");
     }
   };
 
@@ -41,9 +39,13 @@ const Post = () => {
     <>
       <form className="post-conatiner" onSubmit={handleSubmit}>
         <div className="post-image-container">
-          <h3 className="post-header-text">Blog Here...</h3>
-          <div>{postErr}</div>
-          <img alt="" className="post-image" src={img1} />
+          <h1 className="post-header-text">Tell us</h1>
+          <div className="post-error-container">
+            <div className="post-error">{postErr}</div>
+          </div>
+          <div className="post-image-contain">
+            <img alt="" className="post-image" src={img1} />
+          </div>
           <div className="form-control">
             <label htmlFor="title">Title:</label>
             <input
