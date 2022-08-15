@@ -327,3 +327,11 @@ button[type=submit] {
 .post-error {
     color: red;
 }
+
+.loading {
+    text-align: center;
+}
+
+.load-text {
+    color: var(--blue);
+}
