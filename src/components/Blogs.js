@@ -46,8 +46,9 @@ const Blogs = () => {
           );
         }): <Loading />}
         <div className="blog-loadmore">
-          <button className="loadmore" onClick={() => loadMore()}>
-            load more
+          <button className="loadmore" onClick={() => loadMore()} disabled={isLoaded}>
+            {isLoaded && <span>Loading...</span>}
+            {!isLoaded && <span>Load more</span>}
           </button>
         </div>
       </div>
