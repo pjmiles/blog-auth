@@ -131,11 +131,12 @@ button[type=submit] {
 /* for Home  */
 .home-header {
     text-align: center;
-    box-shadow: 1px 1.5px 9px 0.2px;
-    border-radius: 15px;
+    /* box-shadow: 1px 1.5px 9px 0.2px; */
+    /* border-radius: 15px; */
     margin: 10rem 17px;
     padding: 15px;
 }
+
 
 .home-header h2 {
     color: var(--blue);
@@ -144,10 +145,9 @@ button[type=submit] {
 
 .home-header h1 {
     color: var(--blue-alt);
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    margin-bottom: 0.6rem;
 }
-
 .home-header h1 span {
     color: var(--primary-alt);
 }

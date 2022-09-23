@@ -4,7 +4,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./pages/Home";
 import Post from "./components/Post";
-import Navbar from "./components/Navbar";
+// import Navbar from "./components/Navbar";
 import Profile from "./components/Profile";
 import Blogs from "./components/Blogs";
 // import { useState } from "react";
@@ -14,7 +14,7 @@ function App() {
   
   return (
     <div className="App">
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/blogs" element={<Blogs />}/>
