@@ -3,8 +3,13 @@
     --primary-alt: #b8b5c4;
     --secondary: #555085;
     --secondary-alt: #eee;
+    --alt-color: #d71e5b;
     --dark: #1d1c1c;
     --dark-alt: #999c99;
+    --red: red;
+    --blue:  #4169E1;
+    --blue-alt: #1C3A94;
+    --shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 *{
@@ -13,20 +18,63 @@
     box-sizing: border-box;
 }
 
-/* forms styling */
+/* nav section */
+.nav-bar {
+    background-color: var(--secondary);
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+    width: 100%;
+}
 
-form {
+.nav-item {
+    color: var(--light);
+    font-size: 18px;
+}
+
+.nav-item a{
+    text-decoration: none;
+    color: var(--secondary-alt);
+    padding-left: 20px;
+}
+
+.nav-item a:hover {
+    color: var(--alt-color);
+    transition: 0.3s;
+}
+
+.logo {
+    color: var(--secondary-alt);
+    font-size: 20px;
+    font-weight: 800;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* forms styling */
+.register-section {
     border: 3px solid var(--dark-alt);
+    background-color: var(--secondary);
     border-radius: 10px;
     width: 100%;
     max-width: 30rem;
-    margin: 10rem auto;
+    margin: 15px auto;
     position: relative;
-    padding: 10px 10px;
+    padding: 40px 40px;
 }
 
+.login-section {
+    border: 3px solid var(--dark-alt);
+    background-color: var(--secondary);
+    border-radius: 10px;
+    width: 100%;
+    max-width: 30rem;
+    margin: 7rem auto;
+    position: relative;
+    padding: 40px 40px;
+}
 
-input[type=text], input[type=password], input[type=email] {
+input[type=text], input[type=password], input[type=email], input[type=username] {
     width: 100%;
     box-sizing: border-box;
     display: inline-block;
@@ -35,18 +83,21 @@ input[type=text], input[type=password], input[type=email] {
     padding: 12px 15px;
 }
 
-.submit-btn-login {
+button[type=submit] {
+    color: var(--red);
     background-color: var(--primary);
-    color: var(--dark);
+    color: var(--red);
     padding: 10px 10px;
     cursor: pointer;
-    margin: 8px 0;
+    margin: 10px 0;
     border: none;
     width: 100%;
+    font-weight: 600;
 }
 
 .submit-btn-login:hover{
     opacity: 0.8;
+    transition: 0.3s;
 }
 
 .login-inner-text {
@@ -54,22 +105,233 @@ input[type=text], input[type=password], input[type=email] {
     text-align: center;
 }
 
-/* for rgistration */
-.reg-btn {
-    background-color: var(--primary);
-    color: var(--dark);
-    padding: 10px 10px;
-    cursor: pointer;
-    margin: 8px 0;
-    border: none;
-    width: 100%;
+.login-message {
+    background-color: plum;
 }
 
+.login-error {
+    background-color: rgb(189, 51, 51);
+    text-align: center;
+}
+
+/* for rgistration */
 .reg-btn:hover {
     opacity: 0.8;
+    transition: 0.3s;
 }
-
 .register-inner-text {
     font-size: 20px;
     text-align: center;
+}
+.reg-error {
+    background-color: rgb(189, 51, 51);
+    text-align: center;
+}
+
+/* for Home  */
+.home-header {
+    text-align: center;
+    box-shadow: 1px 1.5px 9px 0.2px;
+    border-radius: 15px;
+    margin: 10rem 17px;
+    padding: 15px;
+}
+
+.home-header h2 {
+    color: var(--blue);
+    font-size: 2rem;
+}
+
+.home-header h1 {
+    color: var(--blue-alt);
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.home-header h1 span {
+    color: var(--primary-alt);
+}
+
+.home-header p {
+    font-weight: 500;
+    color: var(--dark-alt);
+}
+
+/* search bar */
+.search-bar-wrap > form {
+    background-color: var(--primary);
+    border: none;
+    width: fit-content;
+    margin: 2.5rem auto 4rem;
+    padding: 1rem;
+}
+
+.search-bar-wrap button {
+    padding: .1rem 1rem;
+    color: var(--blue-alt);
+}
+
+/* post container */
+.post-header-text {
+    text-align: center;
+    font-weight: 600;
+    color: var(--secondary);
+}
+
+.post-image-container {
+    margin: 20px auto;
+    max-width: 550px;
+    align-items: center;
+    padding: 15px 15px;
+    box-shadow: 1px 0px 8px;
+}
+
+.post-image{
+    width: 200px;
+}
+
+.post-image-contain {
+    text-align: center;
+}
+
+.post-image-description {
+    width: 100%;
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 8px 0;
+    border: 1px solid var(--primary);
+    padding: 12px 15px;
+}
+.post-btn {
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+    background-color: #b8b5c4;
+    margin-top: 20px;
+    width: 20%;
+}
+
+.post-btn:hover{
+    transition: 0.3ms;
+    background-color: #d71e5b;
+}
+
+/* profile section */
+.profile{
+    max-width: 550px;
+    margin: 0 auto;
+}
+.profile-image-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 30px;
+    margin: 18px 0px;
+    border-bottom: 1px solid rgb(195, 195, 204);
+    border-radius: 5px;
+}
+
+.profile-inner-image {
+    width: 160px;
+    height: 160px;
+    border-radius: 80px;
+}
+
+.profile-right-text {
+    display: flex;
+    justify-content: space-between;
+    width: 108%;
+    margin-top: 10px;
+}
+
+.profile-right > h2 {
+    margin-top: 10px;
+}
+
+.profile-gallery{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.profile-item {
+    width: 30%;
+    margin-bottom: 5px;
+}
+
+.profile-right-btn {
+    margin-top: 15px;
+    font-size: 17px;
+    padding: 8px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.profile-right-btn:hover {
+    color: #d71e5b;
+}
+
+/* Blog page */
+.blogs h1 {
+    text-align: center;
+    font-size: 25px;
+}
+
+.blog-container {
+    /* background-color: var(--secondary-alt); */
+    padding: 10px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.blog-title{
+    font-size: 20px;
+    font-weight: 550;
+}
+
+.blog-content-conatiner {
+    /* border: 2px solid #555085; */
+    border-radius: 5px;
+    padding: 10px 15px;
+    height: 200px;
+    width: 300px;
+    box-shadow: var(--shadow);
+}
+
+.blog-loadmore {
+    text-align: center;
+}
+
+.blog-author {
+    color: var(--alt-color);
+}
+
+.loadmore {
+    font-size: 18px;
+    color: var(--secondary);
+}
+
+.author-container {
+    text-align: right;
+    
+}
+
+.post-error-container {
+    text-align: center;
+}
+
+.post-error {
+    color: red;
+}
+
+.loading {
+    text-align: center;
+}
+
+.load-text {
+    color: var(--blue);
 }

@@ -1,25 +1,65 @@
 import { useState } from "react";
+import axiosInstance from "../api/axios";
+import { Link } from "react-router-dom";
+
 
 const Register = () => {
+ 
   const [user, setUser] = useState({
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
+    username: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    password2: "",
   });
 
   const [errMsg, setErrMsg] = useState("");
   const [registered, setRegistered] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setUser("");
-    setRegistered(true);
+ 
+  const handleChange = (e) => {
+    setUser((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value.trim(),
+    }));
   };
 
-  const getUserDetails = (e) => {
-    setUser((current) => ({ ...current, [e.target.name]: e.target.value }));
+  const postRequest = async () => {
+    try {
+     await axiosInstance.post("register", user)
+     setRegistered(true)
+     
+    } catch (error) {
+        setRegistered(false)
+        setErrMsg("This User already exist")
+      console.log(error);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (
+      !user.first_name ||
+      !user.last_name ||
+      !user.username ||
+      !user.email ||
+      !user.password ||
+      !user.password2
+    ) {
+      setErrMsg("please provide all required details");
+      setRegistered(false)
+    }
+    else if (user.password !== user.password2) {
+      setErrMsg("Password does not match");
+      setRegistered(false)
+    }
+    else if (user.password.length <= 7){
+      setErrMsg("Password must be more than 7 characters")
+      setRegistered(false);
+    } else {
+      postRequest()
+    }
   };
 
   return (
@@ -29,42 +69,61 @@ const Register = () => {
           <h1>Your Registration was successful</h1>
           <br />
           <p>
-            <a href="#">Please Login Here!</a>
+            <Link to="/login/">Please Login Here!</Link>
           </p>
         </section>
       ) : (
-        <form onSubmit={handleSubmit}>
+        
+        <form onSubmit={handleSubmit} className="register-section">
           <div className="register-container">
             <div className="register-header-text">
-              <h3 className="register-inner-text">Login Here</h3>
+              <h3 className="register-inner-text">Register Here</h3>
             </div>
-
+            <div className="reg-error">{errMsg}</div>
             <div className="reg-username">
-              <label htmlFor="firstName">First Name </label>
+              <label htmlFor="first_name">First Name </label>
               <input
                 className="register-input"
                 type="text"
-                id="firstName"
-                name="firstName"
-                placeholder="FirstName"
-                value={user.firstName}
-                onChange={getUserDetails}
+                id="first_name"
+                name="first_name"
+                placeholder="Firstname"
+                value={user.first_name}
+                onChange={handleChange}
+                required
               ></input>
+           
             </div>
             <div className="reg-lastname">
-              <label htmlFor="lastName">Last Name</label>
+              <label htmlFor="last_name">Last Name</label>
               <input
                 type="text"
-                id="lastName"
-                name="lastName"
+                id="last_name"
+                name="last_name"
                 className="register-input"
-                placeholder="LastName"
-                value={user.lastName}
-                onChange={getUserDetails}
+                placeholder="lastname"
+                value={user.last_name}
+                onChange={handleChange}
+                required
               ></input>
+             
+            </div>
+            <div className="reg-username">
+              <label htmlFor="username">Username</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                className="register-input"
+                placeholder="username"
+                value={user.username}
+                onChange={handleChange}
+                required
+              ></input>
+              
             </div>
             <div className="reg-email">
-              <label htmlFor="email">Email </label>
+              <label htmlFor="email">Email</label>
               <input
                 type="email"
                 id="email"
@@ -72,11 +131,12 @@ const Register = () => {
                 className="register-input"
                 placeholder="Email"
                 value={user.email}
-                onChange={getUserDetails}
+                onChange={handleChange}
+                required
               ></input>
             </div>
             <div className="reg-password">
-              <label htmlFor="password">Password </label>
+              <label htmlFor="password">Password</label>
               <input
                 className="register-input"
                 type="password"
@@ -84,20 +144,23 @@ const Register = () => {
                 name="password"
                 placeholder="Password"
                 value={user.password}
-                onChange={getUserDetails}
+                onChange={handleChange}
+                required
               ></input>
+              
             </div>
             <div className="reg-confirm-password">
-              <label htmlFor="confirmPassword">Confirm Password</label>
+              <label htmlFor="password2">Confirm Password</label>
               <input
                 className="register-input"
                 type="password"
-                id="confirmPassword"
-                name="confirmPassword"
+                id="password2"
+                name="password2"
                 placeholder="Confirm Password"
-                value={user.confirmPassword}
-                onChange={getUserDetails}
-              ></input>
+                value={user.password2}
+                onChange={handleChange}
+                required
+              ></input> 
             </div>
           </div>
           <button type="submit" className="reg-btn">
