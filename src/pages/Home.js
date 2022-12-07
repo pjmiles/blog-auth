@@ -14,9 +14,14 @@ const Home = () => {
           a place to express yourself, gain insight <br /> and feel entertained
           through daily updates...
         </p>
-        <div>
-        <Link to="/blogs" element={<Blogs />}>HOME</Link>
-      </div>
+        <div className="header-base">
+          <span>
+            click{" "}
+            <Link to="/blogs" element={<Blogs />}>
+              here
+            </Link>
+          </span>
+        </div>
       </header>
     </div>
   );

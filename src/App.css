@@ -157,6 +157,10 @@ button[type=submit] {
     color: var(--dark-alt);
 }
 
+.header-base span {
+    font-size: 18px;
+}
+
 /* search bar */
 .search-bar-wrap > form {
     background-color: var(--primary);
